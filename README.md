@@ -24,3 +24,5 @@
 2. Create database with table <code>tblVideo</code>
 3. Setting connection database in <code>appsettings.json</code>
 4. Finish..
+
+Note: this project in progress develop
