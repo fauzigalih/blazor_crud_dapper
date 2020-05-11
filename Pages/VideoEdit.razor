@@ -1,0 +1,77 @@
+﻿@using BlazorDapperCRUD.Data
+@page "/videoedit/{id:int}"
+@inject IVideoService VideoService
+@inject NavigationManager NavigationManager
+
+<h1>@pageTitle</h1>
+<h2>@hello</h2>
+<EditForm Model="@video" OnValidSubmit="@VideoSave">
+    <div class="form-group col-md-4">
+        <label>Video Title</label>
+        <input type="text" class="form-control" @bind="video.title" required />
+        <small class="form-text text-muted">Make sure the title cannot be the same.</small>
+    </div>
+    <div class="form-group col-md-4">
+        <label>Date Published</label>
+        <input type="date" class="form-control" @bind="video.datePublished" required min="1990-01-01" max="2020-12-31" />
+        <small class="form-text text-muted"></small>
+    </div>
+    <div class="form-group col-md-4">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" @bind="video.isActive" />
+            <label class="form-check-label">Is Active</label>
+        </div>
+    </div>
+    <div class="form-group col-md-4 text-md-right">
+        <input type="submit" value="Add" class="btn btn-primary" />
+        <input type="button" value="Cancel" class="btn btn-danger" @onclick="Cancel" />
+    </div>
+    
+</EditForm>
+@code {
+    //Create empty video object
+    Video video = new Video();
+
+    [Parameter]
+    public int id { get; set; }
+
+    //Set default page Title
+    public string pageTitle = "Add Video";
+    public string hello = "asw";
+
+    //Execute on page load
+    protected override async Task OnInitializedAsync()
+    {
+        if(id == 0)
+        {
+            DateTime defaultDate = new DateTime(2020, 01, 01);
+            video.datePublished = defaultDate;
+            video.isActive = true;
+        }
+        else
+        {
+            video = await VideoService.Video_GetOne(id);
+            pageTitle = "Edit Video";
+        }
+    }
+
+    protected void VideoSave()
+    {
+        if(video.videoId == 0)
+        {
+            VideoService.VideoInsert(video);
+            hello = "wkwk";
+        }
+        else
+        {
+            VideoService.VideoUpdate(video);
+            hello = "update";
+        }
+        NavigationManager.NavigateTo("/videolist");
+    }
+
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("/videolist");
+    }
+}

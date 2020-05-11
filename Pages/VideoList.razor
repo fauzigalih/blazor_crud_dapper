@@ -1,0 +1,47 @@
+﻿@using BlazorDapperCRUD.Data
+@page "/videolist"
+@inject IVideoService VideoService
+
+<h1>VideoList</h1>
+<div class="mt-4 mb-2">
+    <a class="btn btn-primary" href="/videoadd" role="button">Add Video</a>
+</div>
+    
+@if (videos == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    int no = 1;
+    <table class="table">
+        <tr>
+            <th>No</th>
+            <th>Video</th>
+            <th>Date Published</th>
+            <th>Active</th>
+            <th>Action</th>
+        </tr>
+        @foreach (var video in videos)
+        {
+            <tr>
+                <td>@(no++)</td>
+                <td>@video.title</td>
+                <td>@video.datePublished.ToString("dd/MM/yyyy")</td>
+                <td>@(video.isActive ? "Yes" : "No")</td>
+                <td>
+                    <a class="btn btn-primary" href="/videoedit/@video.videoId" role="button">Edit</a>
+                    <a class="btn btn-danger" href="/videodelete" role="button">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+@code {
+    IEnumerable<Video> videos;
+    protected override async Task OnInitializedAsync()
+    {
+        videos = await VideoService.VideoList();
+    }
+}
