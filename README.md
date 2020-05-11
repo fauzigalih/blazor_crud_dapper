@@ -11,6 +11,14 @@
  1. SQL Server
  2. Visual Studio IDE or another
  
+  <h3>Table tblVideo</h3>
+ <pre>
+ - videoId           int            NotNull     PrimaryKey    AutoIncrement
+ - title             varchar(50)
+ - datePublished     date
+ - isActive          bit
+ </pre>
+ 
  # Instalation
 1. Clone this project with new repository or download project file
 2. Create database with table <code>tblVideo</code>
