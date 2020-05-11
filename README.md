@@ -1,17 +1,17 @@
 # blazor_crud
  This project build with template Blazor
  
- #Technology
+ # Technology
  1. ASP .NET Core 3.1
  2. Blazor
  3. ORM Dapper
  4. SQL Server v.15
  
- #Required Project
+ # Required Project
  1. SQL Server
  2. Visual Studio IDE or another
  
- #Instalation
+ # Instalation
 1. Clone this project with new repository or download project file
 2. Create database with table <code>tblVideo</code>
 3. Setting connection database in <code>appsettings.json</code>
