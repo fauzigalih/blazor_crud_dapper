@@ -1,5 +1,7 @@
-# blazor_crud
+# blazor_crud_dapper
  This project build with template Blazor
+ 
+ Status: <b>On Progress</b>
  
  # Technology
  1. ASP .NET Core 3.1
@@ -26,3 +28,5 @@
 4. Finish..
 
 Note: this project in progress develop
+
+<br><br><br>Created by: <a href="https://www.instagram.com/fauzigalihajisaputro/">@fauzigalihajisaputro</a>
